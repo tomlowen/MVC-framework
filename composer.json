@@ -1,0 +1,16 @@
+{
+    "name": "tom/mvc-framework",
+    "autoload": {
+        "psr-4": {
+            "Tom\\MvcFramework\\": "src/",
+            "app\\": "./"
+        }
+    },
+    "authors": [
+        {
+            "name": "tomlowen",
+            "email": "tom.r.lowen@googlemail.com"
+        }
+    ],
+    "require": {}
+}

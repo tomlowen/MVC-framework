@@ -17,11 +17,30 @@ class Router
         $this->routes['get'][$path] = $callback;
     }
 
+    public function renderView($view)
+    {
+        $layoutContent = $this->layoutContent("main");
+        include_once Application::$ROOT_DIR . "/views/$view.php";
+    }
+
+    protected function layoutContent($layout)
+    {
+        include_once Application::$ROOT_DIR . "/views/layouts/$layout.php";
+    }
+
     public function resolve()
     {
         $path = $this->request->getPath();
         $method = $this->request->getMethod();
         $callback = $this->routes[$method][$path] ?? false;
-        echo $callback ? call_user_func($callback) : "Not found";
+
+        if (!$callback) {
+            return "Not found";
+        }
+        if (is_string($callback)) {
+            return $this->renderView($callback);
+        }
+
+        return call_user_func($callback);
     }
 }

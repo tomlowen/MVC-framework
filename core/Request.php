@@ -12,6 +12,6 @@ class Request
     }
     public function getMethod()
     {
-        $path = $_SERVER["REQUEST_URI"];
+        return strtolower($_SERVER["REQUEST_METHOD"]);
     }
 }
